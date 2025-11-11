@@ -1,0 +1,115 @@
+/* 🌟 Conteneur principal */
+.products-list {
+  max-width: 1200px;
+  margin: 30px auto;
+  padding: 20px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* 📝 Titre */
+h2 {
+  text-align: center;
+  color: #333;
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+
+/* 🗃️ Table de produits */
+.table-container {
+  overflow-x: auto;
+}
+
+/* 🌐 Table */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0 auto;
+  font-size: 16px;
+}
+
+thead th {
+  background-color: #f4f4f4;
+  color: #333;
+  font-weight: bold;
+  padding: 12px;
+  border: 1px solid #ddd;
+}
+
+tbody tr {
+  transition: background-color 0.2s ease;
+}
+
+tbody tr:hover {
+  background-color: #f9f9f9;
+}
+
+td, th {
+  padding: 12px;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+td img {
+  max-width: 100px;
+  max-height: 100px;
+  object-fit: contain;
+  border-radius: 5px;
+}
+
+/* 🛑 Boutons */
+button {
+  padding: 8px 15px;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  color: white;
+  margin: 2px;
+}
+
+.delete-btn {
+  background-color: #6c63ff;
+}
+
+.delete-btn:hover {
+  background-color: #5548c8;
+}
+
+.edit-btn {
+  background-color: #6c63ff;
+}
+
+.edit-btn:hover {
+  background-color: #5548c8;
+}
+
+/* 📝 Description colonne */
+td.description {
+  max-width: 400px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* 📱 Responsive */
+@media (max-width: 768px) {
+  .products-list {
+      padding: 10px;
+  }
+
+  table {
+      font-size: 14px;
+  }
+
+  td img {
+      max-width: 60px;
+      max-height: 60px;
+  }
+
+  button {
+      padding: 5px 10px;
+      font-size: 12px;
+  }
+}

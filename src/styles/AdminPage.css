@@ -1,0 +1,43 @@
+.admin-container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+    text-align: center;
+    font-family: Arial, sans-serif;
+  }
+  
+  /* 🎨 Boutons Admin */
+  .admin-links {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+    margin-top: 20px;
+  }
+  
+  .admin-button {
+    text-decoration: none;
+    background-color: #dcb9c8;
+    color: rgb(223, 215, 219);
+    padding: 12px 20px;
+    border-radius: 5px;
+    font-size: 18px;
+    font-weight: bold;
+    width: 250px;
+    text-align: center;
+    transition: background 0.3s;
+  }
+  
+  .admin-button:hover {
+    background-color: rgb(146, 88, 104);
+  }
+  
+  /* 🔹 Style spécifique pour le bouton d'ajout de produit */
+  .add-product {
+    background-color: #dcb9c8;
+  }
+  
+  .add-product:hover {
+    background-color: rgb(146, 88, 104);
+  }
+  

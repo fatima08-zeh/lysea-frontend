@@ -1,0 +1,566 @@
+/* ==============================
+   RESET & BASE
+   ============================== */
+   * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #fffdfc;
+    color: #333;
+  }
+  
+  .home-page {
+    padding: 40px 20px;
+    background-color: white;
+  }
+  
+  /* ==============================
+     HERO
+     ============================== */
+  .hero {
+    display: flex;
+    align-items: flex-end;        /* aligne texte + image en bas */
+    gap: 30px;                     /* espace entre colonnes */
+    padding: 60px 30px 30px;      /* top/right/bottom */
+    background: linear-gradient(135deg, #fdf1eb, #fff);
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    margin-bottom: 60px;
+    overflow: hidden;
+  }
+  
+  .hero-left {
+    flex: 1;
+    padding: 20px 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  .hero-left .badge {
+    background-color: #d4a373;
+    color: #fff;
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 8px 16px;
+    border-radius: 20px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    width: fit-content;
+    margin-bottom: 20px;
+  }
+  
+  .hero-left h1 {
+    font-size: 3rem;
+    color: #4b2e2e;
+    margin-bottom: 20px;
+    font-weight: 700;
+  }
+  
+  .hero-left .subtitle,
+  .hero-left .secondary-text {
+    color: #7a645f;
+    line-height: 1.6;
+  }
+  
+  .hero-left .subtitle {
+    font-size: 1.2rem;
+    margin-bottom: 18px;
+  }
+  
+  .hero-left .secondary-text {
+    font-size: 1rem;
+    margin-bottom: 35px;
+    max-width: 480px;
+  }
+  
+  .hero-left button {
+    align-self: start;
+    background-color: #bb7a5a;
+    color: #fff;
+    border: none;
+    padding: 14px 28px;
+    border-radius: 30px;
+    font-size: 1rem;
+    font-weight: 600;
+    box-shadow: 0 5px 15px rgba(187,122,90,0.3);
+    cursor: pointer;
+    transition: background-color .3s, transform .3s;
+  }
+  .hero-left button:hover {
+    background-color: #a76647;
+    transform: translateY(-2px);
+  }
+  
+  .hero-right {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    overflow: hidden;
+  }
+  
+  .hero-right img {
+    max-width: 100%;
+    height: auto;
+    object-fit: cover;
+    object-position: center bottom;
+    display: block;
+    border-radius: 20px;
+  }
+  
+  /* ==============================
+     ROUTINE BEAUTÉ
+     ============================== */
+  .routine {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 60px 30px;
+    background-color: #fff;
+    border-radius: 20px;
+    margin-bottom: 60px;
+    overflow: hidden;
+    gap: 30px;
+  }
+  
+  .routine-left {
+    flex: 1;
+    max-width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;  /* centre horizontalement tous les enfants */
+    text-align: center; 
+  }
+  
+  .routine-left h3 {
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #555;
+    margin-bottom: 8px;
+  }
+  
+  .routine-left h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #222;
+    margin-bottom: 20px;
+  }
+  
+  .routine-left p {
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 30px;
+  }
+  
+  .routine-left button {
+    background: none;
+    border: none;
+    color: #222;
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: underline;
+    cursor: pointer;
+    display: inline-block;
+  margin: 0 auto;
+  }
+  
+  .routine-right {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+  
+  .routine-right img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+  
+  /* ==============================
+     FEATURE OIL
+     ============================== */
+  .feature-oil {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 60px 30px;
+    background-color: #fff;
+    border-radius: 20px;
+    margin-bottom: 60px;
+    overflow: hidden;
+    gap: 30px;
+    
+  }
+  
+  .feature-oil-image,
+  .feature-oil-text {
+    flex: 1;
+  }
+  .feature-oil-text {
+    display: flex;
+    flex-direction: column; /* empile h3, h2, p, bouton en colonne */
+    align-items: center;    /* centre horizontalement chaque élément */
+    text-align: center;     /* centre les lignes de texte à l’intérieur */
+  }
+  .feature-oil-image {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding-right: 30px;
+  }
+  
+  .feature-oil-image img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 15px;
+  }
+  
+  .feature-oil-text h3 {
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    color: #555;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+  }
+  
+  .feature-oil-text h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #222;
+    margin-bottom: 20px;
+  }
+  
+  .feature-oil-text p {
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 30px;
+  }
+  
+  .feature-oil-text button {
+    background: none;
+    border: none;
+    color: #222;
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  
+  /* ==============================
+     À PROPOS / ABOUT
+     ============================== */
+     .about-lyséa {
+      display: flex;
+      align-items: stretch;
+      max-width: 1200px;      /* largeur centrale */
+      max-height: 600px; 
+      margin: 0 auto 60px;    /* centré horizontalement */
+      padding: 20px;
+      background-color: #fdf1eb;
+      border-radius: 20px;
+      gap: 30px;
+    }
+    
+    .about-left {
+      flex: 1;
+      display: flex;             /* transforme en flex-container */
+      flex-direction: column;    /* empile verticalement */
+      justify-content: center;   /* centre verticalement */
+      align-items: center;       /* centre horizontalement */
+      text-align: center;        /* centre le texte */
+    }
+    
+    .about-left h2 {
+      font-size: 2rem;
+      color: #4b2e2e;
+      margin-bottom: 20px;
+    }
+    
+    .about-left p {
+      font-size: 1rem;
+      color: #7a645f;
+      line-height: 1.7;
+      margin-bottom: 30px;
+      max-width: 500px;
+    }
+    
+    .about-buttons {
+      display: flex;
+      gap: 20px;
+    }
+    
+    .btn-buy,
+    .btn-secondary {
+      padding: 12px 24px;
+      border: none;
+      border-radius: 25px;
+      font-size: 1rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background-color .3s;
+    }
+    
+    .btn-buy {
+      background-color: #bb7a5a;
+      color: #fff;
+    }
+    .btn-buy:hover {
+      background-color: #a76647;
+    }
+    
+    .btn-secondary {
+      background-color: #333;
+      color: #fff;
+    }
+    .btn-secondary:hover {
+      background-color: #222;
+    }
+    
+    .about-right {
+      flex: 1;
+      max-width: 500px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+    
+    .about-right img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      border-radius: 20px;
+    }
+    
+  
+  /* ==============================
+     WHY DANGILA
+     ============================== */
+  .why-dangila {
+    padding: 80px 20px;
+    text-align: center;
+  }
+  
+  .why-dangila h2 {
+    font-size: 2rem;
+    color: #4b2e2e;
+    margin-bottom: 10px;
+  }
+  
+  .why-dangila .why-subtext {
+    font-size: 1rem;
+    color: #7a645f;
+    margin: 0 auto 50px;
+    max-width: 600px;
+    line-height: 1.6;
+  }
+  
+  .why-cards {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 60px;
+  }
+  
+  .why-item {
+    max-width: 220px;
+    text-align: center;
+  }
+  
+  .why-item img {
+    width: 90px;
+    height: 90px;
+    margin-bottom: 20px;
+  }
+  
+  .why-item h3 {
+    font-size: 1.1rem;
+    color: #4b2e2e;
+    margin-bottom: 10px;
+  }
+  
+  .why-item p {
+    font-size: 0.95rem;
+    color: #7a645f;
+    line-height: 1.5;
+  }
+  
+  /* ==============================
+     FOOTER
+     ============================== */
+  .footer {
+    background: linear-gradient(to top, #fdf1eb, #fff);
+    padding: 60px 40px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 40px;
+    color: #5f463f;
+    font-size: 0.95rem;
+    margin-top: 60px;
+  }
+  
+  .footer-col {
+    flex: 1;
+    min-width: 220px;
+  }
+  
+  .footer-col h4 {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    color: #4b2e2e;
+  }
+  
+  .footer p,
+  .footer li,
+  .footer a {
+    margin-bottom: 10px;
+    display: block;
+    color: #5f463f;
+    text-decoration: none;
+    transition: color .2s;
+  }
+  .footer a:hover {
+    color: #bb7a5a;
+  }
+  
+  .footer-icons {
+    display: flex;
+    gap: 12px;
+    font-size: 1.2rem;
+    margin-top: 15px;
+  }
+  .footer-icons i {
+    transition: color .3s;
+  }
+  .footer-icons i:hover {
+    color: #a76647;
+  }
+  
+  .footer-newsletter {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .footer-newsletter input {
+    padding: 10px 15px;
+    border: 1px solid #bbb;
+    border-radius: 5px;
+    outline: none;
+  }
+  
+  .footer-newsletter button {
+    background-color: #bb7a5a;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color .3s;
+  }
+  .footer-newsletter button:hover {
+    background-color: #a76647;
+  }
+  
+  /* ==============================
+     MEDIA QUERIES
+     ============================== */
+  @media (max-width: 992px) {
+    .hero,
+    .routine,
+    .feature-oil,
+    .about-lyséa {
+      flex-direction: column;
+      padding: 40px 20px;
+    }
+    .hero-left,
+    .hero-right,
+    .routine-left,
+    .routine-right,
+    .feature-oil-image,
+    .feature-oil-text,
+    .about-left,
+    .about-right {
+      max-width: 100%;
+    }
+    .hero-right,
+    .routine-right,
+    .about-right {
+      align-items: center;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .hero-left h1 { font-size: 2.5rem; }
+    .why-dangila .why-subtext { margin-bottom: 30px; }
+    .footer { padding: 40px 20px; }
+  }
+  .newsletter-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  max-width: 400px;
+}
+
+.newsletter-label {
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.newsletter-input-group {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.newsletter-input {
+  flex: 1;
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+.newsletter-btn {
+  padding: 0.75rem 1.25rem;
+  border: none;
+  border-radius: 8px;
+  background-color: #bd7a5e; /* ta couleur */
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.newsletter-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.newsletter-msg {
+  font-size: 0.85rem;
+  margin-top: 0.5rem;
+}
+
+.newsletter-success {
+  color: green;
+}
+
+.newsletter-error {
+  color: red;
+}
+
+  

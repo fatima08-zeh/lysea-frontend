@@ -1,0 +1,161 @@
+/* 🛒 Conteneur principal du panier */
+.cart-container {
+    max-width: 850px;
+    margin: 40px auto;
+    padding: 25px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.12);
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* 🛍️ Titre du panier */
+.cart-container h2 {
+    font-size: 26px;
+    font-weight: bold;
+    color: #333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+}
+
+/* Liste des articles */
+.cart-container ul {
+    list-style: none;
+    padding: 0;
+}
+
+/* 🛒 Élément du panier */
+.cart-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #ddd;
+    padding: 15px;
+    font-size: 16px;
+    transition: background 0.3s ease;
+}
+
+.cart-item:hover {
+    background: #f8f8f8;
+    border-radius: 8px;
+}
+
+/* 🖼️ Image produit */
+.cart-item img {
+    width: 80px;  /* Augmenter la taille */
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.15);
+    margin-right: 15px;
+}
+
+/* 🛍️ Informations produit */
+.cart-item h3 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: bold;
+    color: #222;
+}
+
+/* 💰 Prix */
+.cart-item p {
+    margin: 5px 0;
+    font-size: 16px;
+    color: #666;
+}
+
+/* 📌 Boutons de gestion de quantité */
+.quantity-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.quantity-controls button {
+    background: #333;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: background 0.3s ease;
+}
+
+.quantity-controls button:hover {
+    background: #555;
+}
+
+/* 🗑️ Bouton de suppression */
+.remove-btn {
+    background: black;
+    color: white;
+    border: none;
+    padding: 8px 14px;
+    font-size: 15px;
+    cursor: pointer;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    transition: background 0.3s ease;
+}
+
+.remove-btn:hover {
+    background: #666;
+}
+
+/* 💰 Total général */
+.total-price {
+    font-size: 22px;
+    font-weight: bold;
+    color: #222;
+    margin-top: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+}
+
+/* 🎯 Boutons en bas */
+.cart-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 18px;
+    margin-top: 25px;
+}
+
+/* 🗑️ Bouton vider le panier */
+.clear-cart {
+    background: #444;
+    color: white;
+    border: none;
+    padding: 12px 18px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: background 0.3s ease;
+}
+
+.clear-cart:hover {
+    background: #666;
+}
+
+/* ✅ Bouton passer la commande */
+.checkout-btn {
+    background: #444;
+    color: white;
+    border: none;
+    padding: 12px 18px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: background 0.3s ease;
+}
+
+.checkout-btn:hover {
+    background: #666;
+}

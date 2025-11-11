@@ -1,0 +1,119 @@
+/* 🌟 Conteneur principal */
+.edit-product-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #eee8ee, #f0e9ee);
+    padding: 40px;
+  }
+  
+  /* 📝 Conteneur formulaire */
+  .product-form-container {
+    display: flex;
+    flex-wrap: wrap;
+    background: white;
+    border-radius: 15px;
+    padding: 30px;
+    gap: 40px;
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.1);
+    max-width: 1000px;
+    width: 100%;
+  }
+  
+  /* 🖼️ Image à gauche */
+  .product-left {
+    flex: 1 1 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .product-left img {
+    width: 250px;               /* ✅ Réduit la largeur */
+    max-height: 450px;          /* ✅ Limite la hauteur */
+    height: auto;
+    border-radius: 10px;
+    object-fit: contain;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* 📋 Formulaire à droite */
+  .product-right {
+    flex: 1 1 400px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  h2 {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #4a3f64;
+  }
+  
+  /* 🖊️ Champs */
+  input, textarea, select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 15px;
+    background-color: #f7f7f7;
+    resize: none;
+  }
+  
+  input:focus, textarea:focus, select:focus {
+    outline: none;
+    border-color: #b38cb0;
+    box-shadow: 0 0 5px rgba(179, 140, 176, 0.5);
+  }
+  
+  /* ✅ Boutons */
+  button {
+    padding: 12px;
+    background-color: #4a3f64;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  button:hover {
+    background-color: #6a5487;
+    transform: scale(1.02);
+  }
+  
+  .delete-btn {
+    background-color: #d9534f;
+    margin-top: 10px;
+  }
+  
+  .delete-btn:hover {
+    background-color: #c9302c;
+  }
+  
+  /* 📱 Responsive */
+  @media (max-width: 768px) {
+    .product-form-container {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .product-left img {
+      width: 160px;              /* ✅ Plus petit pour mobile */
+      max-height: 200px;
+    }
+  
+    .product-right {
+      width: 100%;
+    }
+  
+    button {
+      width: 100%;
+    }
+  }
+  

@@ -1,0 +1,35 @@
+.status-blocked {
+    color: red;
+    font-weight: bold;
+}
+
+.status-connected {
+    color: green;
+    font-weight: bold;
+}
+
+.status-disconnected {
+    color: gray;
+}
+
+.btn-block, .btn-unblock {
+    padding: 5px 10px;
+    margin: 2px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-block {
+    background-color: red;
+    color: white;
+}
+
+.btn-unblock {
+    background-color: green;
+    color: white;
+}
+
+.btn-block:hover, .btn-unblock:hover {
+    opacity: 0.8;
+}

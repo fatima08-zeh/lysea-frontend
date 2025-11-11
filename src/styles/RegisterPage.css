@@ -1,0 +1,90 @@
+/* 📌 Style du container */
+.register-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(to right, #fdf1eb, #fff8f4);}
+
+/* 📌 Style de l’image */
+.register-image {
+  position: relative;
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 📌 Titre Lyséa */
+.branding {
+  position: absolute;
+  top: 12%;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+}
+
+/* 📌 Style du nom de la marque Lyséa */
+.brand-name {
+  font-size: 45px;
+  font-weight: bold;
+  color: #524e7a; /* Même couleur que Cosmetic */
+  text-transform: uppercase;
+  letter-spacing: 3px;
+}
+
+/* 📌 Style du titre Cosmetic */
+.cosmetic-title {
+  font-size: 20px;
+  color: #7a645f;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+/* 📌 Mise en valeur du mot COSMETIC */
+.cosmetic-bold {
+  font-size: 50px;
+  font-weight: bold;
+  color: #bb7a5a;
+}
+
+/* 📌 Image cosmétique */
+.cosmetic-image {
+  width: 90%;
+  height: auto;
+  border-radius: 10px;
+}
+
+/* 📌 Boîte du formulaire */
+.register-form {
+  width: 40%;
+  background: white;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* 📌 Bouton inscription */
+.register-btn {
+  background: #bb7a5a; /* Couleur assortie */
+  color: white;
+  padding: 12px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background 0.3s ease;
+}
+
+.register-btn:hover {
+  background: #a76647;
+}
+
+/* 📌 Texte sous le bouton */
+.register-info {
+  font-size: 14px;
+  color: #7a645f;
+  margin-top: 10px;
+  text-align: center;
+  font-style: italic;
+}
