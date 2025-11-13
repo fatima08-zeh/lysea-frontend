@@ -1,13 +1,14 @@
 import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import { UserContext } from "../context/UserContext";
+const API_BASE = "https://lysea-backend.onrender.com";
 
 const MyOrdersPage = () => {
   const { user } = useContext(UserContext);
   const [orders, setOrders] = useState([]);
 
   useEffect(() => {
-    axios.get(`http://localhost:5001/api/orders/user/${user.id}`)
+      axios.get(`${API_BASE}/api/orders/user/${user.id}`)
       .then((res) => setOrders(res.data))
       .catch((err) => console.error("Erreur chargement commandes :", err));
   }, [user]);

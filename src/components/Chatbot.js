@@ -1,6 +1,7 @@
 // 📁 frontend/src/components/Chatbot.jsx
 import React, { useState } from 'react';
 import './Chatbot.css';
+const API_BASE = "https://lysea-backend.onrender.com";
 
 const Chatbot = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -16,7 +17,8 @@ const Chatbot = () => {
     setInput("");
 
     try {
-      const res = await fetch("http://localhost:5001/api/chat", {
+      const res = await fetch(`${API_BASE}/api/chat`, {
+
         method: "POST",
         headers: {
           "Content-Type": "application/json",

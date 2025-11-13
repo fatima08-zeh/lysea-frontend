@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import "../styles/EditProductPag.css";
+const API_BASE = "https://lysea-backend.onrender.com";
 
 const brands = ["Karine Joncas", "Watier", "Reversa"];
 
@@ -23,7 +24,7 @@ const EditProductPage = () => {
   // ✅ Charger les infos du produit existant
   useEffect(() => {
     axios
-      .get(`http://localhost:5001/api/products/${id}`)
+      axios.get(`${API_BASE}/api/products/${id}`)
       .then((response) => {
         const product = response.data;
         setFormData({
@@ -33,7 +34,7 @@ const EditProductPage = () => {
           brand: product.brand || "",
           image: null,
         });
-        setPreviewImage(`http://localhost:5001${product.image_url}`);
+        setPreviewImage(`${API_BASE}${product.image_url}`);
       })
       .catch((error) =>
         console.error("❌ Erreur chargement du produit :", error)
@@ -58,7 +59,7 @@ const EditProductPage = () => {
     }
 
     try {
-      const response = await axios.delete(`http://localhost:5001/api/products/${id}`);
+        const response = await axios.delete(`${API_BASE}/api/products/${id}`);
 
       if (response.status === 200) {
         alert("✅ Produit supprimé !");
@@ -84,9 +85,10 @@ const EditProductPage = () => {
     }
 
     try {
-      await axios.put(`http://localhost:5001/api/products/${id}`, data, {
+      await axios.put(`${API_BASE}/api/products/${id}`, data, {
         headers: { "Content-Type": "multipart/form-data" },
       });
+
 
       alert("✅ Produit mis à jour avec succès !");
       navigate("/admin/products");

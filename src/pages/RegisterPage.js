@@ -5,6 +5,7 @@ import "../styles/auth.css";
 import signupImage from "../assets/signup-bg.jpg";
 import { Link } from "react-router-dom";
 
+const API_BASE = "https://lysea-backend.onrender.com";
 
 <div className="auth-left">
   <img src={signupImage} alt="Beauty" />
@@ -25,7 +26,7 @@ const RegisterPage = () => {
     setError(null);
 
     try {
-      await axios.post("http://localhost:5001/api/users/register", formData);
+      await axios.post(`${API_BASE}/api/users/register`, formData);
       alert("Inscription réussie !");
       navigate("/login");
     } catch (error) {

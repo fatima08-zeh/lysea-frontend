@@ -3,6 +3,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 import { UserContext } from "../context/UserContext";
 import { CartContext } from "../context/CartContext";
+const API_BASE = "https://lysea-backend.onrender.com";
 
 const PaypalSuccess = () => {
   const navigate = useNavigate();
@@ -16,8 +17,7 @@ const PaypalSuccess = () => {
 
     const capturePayment = async () => {
       try {
-        const resp = await axios.post(
-          "http://localhost:5001/api/checkout/capture-payment",
+        const resp = await axios.post(`${API_BASE}/api/checkout/capture-payment`,
           { orderID, userId: user?.id }
         );
 

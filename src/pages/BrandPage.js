@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import "../styles/BrandPage.css"; 
+const API_BASE = "https://lysea-backend.onrender.com";
 
 const BrandPage = () => {
   const { brand } = useParams(); // Récupère la marque depuis l'URL
@@ -9,7 +10,7 @@ const BrandPage = () => {
 
     useEffect(() => {
         const formattedBrand = decodeURIComponent(brand); // ✅ Décoder l'URL
-        axios.get(`http://localhost:5001/api/products/brand/${formattedBrand}`)
+        axios.get(`${API_BASE}/api/products/brand/${formattedBrand}`)
           .then(response => {
             setProducts(response.data);
           })
@@ -28,7 +29,7 @@ const BrandPage = () => {
         ) : (
           products.map((product) => (
             <div key={product.id} className="product-card">
-              <img src={`http://localhost:5000${product.image_url}`} alt={product.nom} className="product-image" />
+<img src={`${API_BASE}${product.image_url}`} alt={product.nom} className="product-image" />
               <div className="product-info">
                 <h2>{product.nom}</h2>
                 <p>{product.description}</p>

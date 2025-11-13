@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "../styles/ProductList.css"; // ✅ Assure-toi que ce fichier est bien là
+const API_BASE = "https://lysea-backend.onrender.com";
 
 const ProductList = () => {
     const [products, setProducts] = useState([]);
@@ -12,14 +13,14 @@ const ProductList = () => {
     }, []);
 
     const fetchProducts = () => {
-        axios.get("http://localhost:5001/api/products")
+        axios.get(`${API_BASE}/api/products`)
             .then(response => setProducts(response.data))
             .catch(error => console.error("❌ Erreur chargement des produits :", error));
     };
 
     const handleDelete = (id) => {
       if (window.confirm("Voulez-vous vraiment supprimer ce produit ?")) {
-          axios.delete(`http://localhost:5001/api/products/${id}`)
+          axios.delete(`${API_BASE}/api/products/${id}`)
               .then(() => {
                   setProducts(prevProducts => prevProducts.filter(product => product.id !== id));
                   alert("✅ Produit supprimé !");
@@ -54,7 +55,7 @@ const ProductList = () => {
                         <tr key={product.id}>
                             <td>{product.id}</td>
                             <td>
-                                <img src={`http://localhost:5001${product.image_url}`} alt={product.nom} className="product-img" />
+                                <img src={`${API_BASE}${product.image_url}`} alt={product.nom} className="product-img" />
                             </td>
                             <td>{product.brand}</td> {/* ✅ Affichage de la marque */}
                             <td>{product.nom}</td>

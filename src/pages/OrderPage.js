@@ -7,7 +7,7 @@ import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 import PayPalButton from "../components/PayPalButton";
 import "../styles/OrderPage.css";
 import { useSearchParams } from "react-router-dom";
-
+const API_BASE = "https://lysea-backend.onrender.com";
 const OrderPage = () => {
     const { cart, clearCart } = useContext(CartContext);
     const { user } = useContext(UserContext);
@@ -32,7 +32,7 @@ const OrderPage = () => {
 
     useEffect(() => {
         if (user && user.id) {
-            axios.get(`http://localhost:5001/api/addresses/${user.id}`)
+            axios.get(`${API_BASE}/api/addresses/${user.id}`) 
                 .then((response) => {
                     if (response.data) {
                         setAddress(response.data);
@@ -56,7 +56,7 @@ const OrderPage = () => {
     
     useEffect(() => {
         if (productId) {
-            axios.get(`http://localhost:5001/api/products/${productId}`)
+            axios.get(`${API_BASE}/api/products/${productId}`)
                 .then((res) => setSelectedProduct(res.data))
                 .catch((err) => console.error("❌ Produit introuvable :", err));
         }
@@ -75,7 +75,7 @@ const OrderPage = () => {
 
     const handlePayPalPayment = async () => {
         try {
-            const response = await axios.post("http://localhost:5001/api/checkout/create-payment", {
+            const response = await axios.post(`${API_BASE}/api/checkout/create-payment`, {
                 amount: (totalAmount * 1.15).toFixed(2)
             });
     
@@ -103,11 +103,11 @@ const OrderPage = () => {
         try {
             if (isAddressSaved) {
                 // 🛠️ Adresse déjà existante → mise à jour
-                await axios.put(`http://localhost:5001/api/addresses/${user.id}`, payload);
+                await axios.put(`${API_BASE}/api/addresses/${user.id}`, payload);
                 alert("✅ Adresse mise à jour !");
             } else {
                 // 🆕 Pas encore d'adresse → création
-                await axios.post("http://localhost:5001/api/addresses/save", {
+                await axios.post(`${API_BASE}/api/addresses/save`, {
                     user_id: user.id,
                     ...payload,
                 });

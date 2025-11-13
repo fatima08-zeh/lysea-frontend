@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "../styles/OrdersList.css";
-
+const API_BASE = "https://lysea-backend.onrender.com";
 const OrdersList = () => {
     const [orders, setOrders] = useState([]);
 
     useEffect(() => {
-        axios.get("http://localhost:5001/api/orders") // ✅ API des commandes
+        axios.get(`${API_BASE}/api/orders`) // ✅ API des commandes
             .then(response => setOrders(response.data))
             .catch(error => console.error("❌ Erreur chargement des commandes :", error));
     }, []);

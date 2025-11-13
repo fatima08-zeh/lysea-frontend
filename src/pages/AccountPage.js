@@ -3,7 +3,7 @@ import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { UserContext } from "../context/UserContext";
 import { useNavigate } from "react-router-dom";
-
+const API_BASE = "https://lysea-backend.onrender.com";
 const AccountPage = () => {
   const { user, token, logout } = useContext(UserContext);
   const navigate = useNavigate();
@@ -24,7 +24,7 @@ const AccountPage = () => {
     return;
   }
   axios
-    .get(`http://localhost:5001/api/users/${user.id}`, {
+    .get(`${API_BASE}/api/users/${user.id}`, {
       headers: { Authorization: `Bearer ${token}` }
     })
     .then(res => {

@@ -5,6 +5,7 @@ import "../styles/BeautyPage.css";
 import { useNavigate, useLocation } from "react-router-dom";
 import { FavoritesContext } from "../context/FavoritesContext";
 import { CartContext } from "../context/CartContext";
+const API_BASE = "https://lysea-backend.onrender.com";
 
 const BeautyPage = ({ searchTerm }) => {
     const [products, setProducts] = useState([]);
@@ -21,7 +22,7 @@ const BeautyPage = ({ searchTerm }) => {
 
     useEffect(() => {
         axios
-            .get("http://localhost:5001/api/products")
+            .get(axios.get(`${API_BASE}/api/products`))
             .then((response) => {
                 setProducts(response.data);
                 setLoading(false);

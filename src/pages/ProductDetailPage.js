@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import "../styles/ProductDetailPage.css";
 import { CartContext } from "../context/CartContext"; 
-
+const API_BASE = "https://lysea-backend.onrender.com";
 const ProductDetailPage = () => { 
     const { id } = useParams();
     const { addToCart } = useContext(CartContext);
@@ -11,7 +11,7 @@ const ProductDetailPage = () => {
     const [quantity, setQuantity] = useState(1);
 
     useEffect(() => {
-        axios.get(`http://localhost:5001/api/products/${id}`)
+         axios.get(`${API_BASE}/api/products/${id}`)
             .then(response => setProduct(response.data))
             .catch(error => console.error("❌ Erreur chargement du produit :", error));
     }, [id]);
@@ -20,7 +20,7 @@ const ProductDetailPage = () => {
 
     return (
         <div className="product-detail-container">
-            <img src={`http://localhost:5001${product.image_url}`} alt={product.nom} className="product-detail-image" />
+            <img src={`${API_BASE}${product.image_url}`} alt={product.nom} className="product-detail-image" />
             <div className="product-detail-content">
                 <h2 className="product-title">{product.nom}</h2>
                 <p className="product-price">{product.prix} CAD</p>

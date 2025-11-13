@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import "../styles/AddProductPage.css";
 
 const brands = ["Karine Joncas", "Watier", "Reversa"]; // ✅ Liste des marques
+const API_BASE = "https://lysea-backend.onrender.com";
 
 const AddProductPage = ({ onProductAdded }) => {
     const [formData, setFormData] = useState({ 
@@ -36,7 +37,7 @@ const AddProductPage = ({ onProductAdded }) => {
         console.log("📤 Données envoyées :", Object.fromEntries(data)); // ✅ Debug
     
         try {
-            const response = await axios.post("http://localhost:5001/api/products/add", data, {
+            const response = await axios.post(`${API_BASE}/api/products/add`, data, {
                 headers: { "Content-Type": "multipart/form-data" },
             });
             alert("✅ Produit ajouté !");

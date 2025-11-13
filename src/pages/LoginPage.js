@@ -6,6 +6,8 @@ import "../styles/auth.css";
 import loginImage from "../assets/login-bg.jpg";
 import { Link } from "react-router-dom";
 
+const API_BASE = "https://lysea-backend.onrender.com";
+
 
 
 const LoginPage = () => {
@@ -23,7 +25,7 @@ const LoginPage = () => {
     setErrorMessage("");
 
     try {
-      const response = await axios.post("http://localhost:5001/api/users/login", formData);
+        const response = await axios.post(`${API_BASE}/api/users/login`, formData);
 
       if (response.data && response.data.user) {
         login(response.data.user); 

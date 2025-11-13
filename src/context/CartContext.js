@@ -1,8 +1,8 @@
 import React, { createContext, useState, useContext, useEffect } from "react";
 import axios from "axios";
 import { UserContext } from "./UserContext";
-
 export const CartContext = createContext();
+const API_BASE = "https://lysea-backend.onrender.com";
 
 export const CartProvider = ({ children }) => {
     const { user } = useContext(UserContext);
@@ -30,7 +30,8 @@ export const CartProvider = ({ children }) => {
         const loadCart = async () => {
             if (user && user.id) {
                 try {
-                    const url = `http://localhost:5001/api/cart/${user.id}`;
+                    const url = `${API_BASE}/api/cart/${user.id}`;
+
                     console.log("🔗 URL de récupération du panier :", url);
                     
                     const response = await axios.get(url);
@@ -52,7 +53,8 @@ export const CartProvider = ({ children }) => {
         try {
             const existingProduct = cart.find((item) => item.id === product.id);
             if (existingProduct) {
-                await axios.post("http://localhost:5001/api/cart/add", {
+                await axios.post(`${API_BASE}/api/cart/add`, {
+
                     user_id: user.id,
                     product_id: product.id,
                     quantity: 1,
@@ -66,7 +68,8 @@ export const CartProvider = ({ children }) => {
                     )
                 );
             } else {
-                await axios.post("http://localhost:5001/api/cart/add", {
+                await axios.post(`${API_BASE}/api/cart/add`, {
+
                     user_id: user.id,
                     product_id: product.id,
                     quantity: 1,
@@ -83,7 +86,8 @@ const clearCart = async () => {
     try {
         if (user) {
             console.log("🧹 Tentative de vidage du panier...");
-            await axios.delete(`http://localhost:5001/api/cart/clear/${user.id}`);
+            await axios.delete(`${API_BASE}/api/cart/clear/${user.id}`);
+
         }
         setCart([]);
         localStorage.removeItem("cart"); // ✅ Nettoyage propre du localStorage
@@ -97,7 +101,7 @@ const clearCart = async () => {
 // Fonction pour supprimer un produit du panier
 const removeFromCart = async (productId) => {
     try {
-        await axios.delete(`http://localhost:5001/api/cart/remove/${user.id}/${productId}`);
+        await axios.delete(`${API_BASE}/api/cart/remove/${user.id}/${productId}`);
         
         // Mettre à jour le panier local en supprimant uniquement l'élément avec l'ID correspondant
         setCart((prevCart) =>
@@ -113,7 +117,8 @@ const removeFromCart = async (productId) => {
 // Incrémenter la quantité d'un produit dans le panier
 const increaseQuantity = async (productId) => {
     try {
-        await axios.post("http://localhost:5001/api/cart/add", {
+        await axios.post(`${API_BASE}/api/cart/add`, {
+
             user_id: user.id,
             product_id: productId,
             quantity: 1,
@@ -134,7 +139,8 @@ const increaseQuantity = async (productId) => {
 // Diminuer la quantité d'un produit
 const decreaseQuantity = async (productId) => {
     try {
-        await axios.post("http://localhost:5001/api/cart/decrease", {
+        await axios.post(`${API_BASE}/api/cart/decrease`, {
+
             user_id: user.id,
             product_id: productId,
         });

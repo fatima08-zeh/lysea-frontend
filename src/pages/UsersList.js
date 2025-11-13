@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../styles/UsersList.css";
-
+const API_BASE = "https://lysea-backend.onrender.com";
 const UsersList = () => {
     const [users, setUsers] = useState([]);
 
@@ -11,8 +11,7 @@ const UsersList = () => {
 
     const fetchAllUsers = async () => {
         try {
-            const response = await axios.get("http://localhost:5001/api/users/all");
-            setUsers(response.data);
+            const response = await axios.get(`${API_BASE}/api/users/all`);
         } catch (error) {
             console.error("❌ Erreur chargement des utilisateurs :", error);
         }
@@ -21,7 +20,7 @@ const UsersList = () => {
     const handleBlock = async (id) => {
         if (window.confirm("Voulez-vous vraiment bloquer cet utilisateur ?")) {
             try {
-                await axios.put(`http://localhost:5001/api/users/block/${id}`);
+                await axios.put(`${API_BASE}/api/users/block/${id}`);
                 alert("Utilisateur bloqué !");
                 fetchAllUsers();
             } catch (error) {
@@ -33,7 +32,7 @@ const UsersList = () => {
     const handleUnblock = async (id) => {
         if (window.confirm("Voulez-vous vraiment débloquer cet utilisateur ?")) {
             try {
-                await axios.put(`http://localhost:5001/api/users/unblock/${id}`);
+                await axios.put(`${API_BASE}/api/users/unblock/${id}`);
                 alert("Utilisateur débloqué !");
                 fetchAllUsers();
             } catch (error) {

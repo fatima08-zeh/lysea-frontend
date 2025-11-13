@@ -24,7 +24,22 @@ const FavoritesPage = () => {
   return (
     <div className="beauty-page">
       <h2 className="section-title">Mes Favoris ❤️</h2>
-
+      {favorites.length > 0 && (
+      <button 
+        onClick={() => setFavorites([])} 
+        style={{ 
+          marginBottom: 16, 
+          backgroundColor: "#ff4d4d", 
+          color: "white", 
+          border: "none", 
+          padding: "8px 16px", 
+          borderRadius: "6px", 
+          cursor: "pointer"
+        }}
+      >
+        🗑️ Vider mes favoris
+      </button>
+    )}
       {favorites.length > 0 ? (
         <div className="product-grid">
           {favorites.map((product) => (

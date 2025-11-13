@@ -5,6 +5,7 @@ import "../styles/Navbar.css";
 import { UserContext } from "../context/UserContext";
 import { FavoritesContext } from "../context/FavoritesContext";
 import { CartContext } from "../context/CartContext";
+const API_BASE = "https://lysea-backend.onrender.com";
 
 const Navbar = ({ onSearch }) => {
   const { user, logout } = useContext(UserContext);
@@ -45,7 +46,10 @@ const Navbar = ({ onSearch }) => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
-  
+  useEffect(() => {
+  return () => setSearchTerm(""); // vide le champ de recherche quand on quitte la page
+}, []);
+
 
   return (
     <nav className="navbar">

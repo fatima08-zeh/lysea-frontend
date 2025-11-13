@@ -1,6 +1,7 @@
 import React, { createContext, useState, useContext, useEffect } from "react";
 import axios from "axios";
 import { UserContext } from "./UserContext";
+const API_BASE = "https://lysea-backend.onrender.com";
 
 export const FavoritesContext = createContext(); // ✅ Export correct du contexte
 
@@ -12,7 +13,7 @@ export const FavoritesProvider = ({ children }) => {
     useEffect(() => {
         if (user && user.id) {
             axios
-                .get(`http://localhost:5001/api/favorites/${user.id}`)
+                .get(`${API_BASE}/api/favorites/${user.id}`)
                 .then((response) => {
                     setFavorites(response.data);
                 })
@@ -26,12 +27,12 @@ export const FavoritesProvider = ({ children }) => {
     
         try {
             if (isFavorite) {
-                await axios.delete("http://localhost:5001/api/favorites/remove", {
+                await axios.delete(`${API_BASE}/api/favorites/remove`, {
                     data: { user_id: user.id, product_id: product.id },
                 });
                 setFavorites(favorites.filter((fav) => fav.id !== product.id));
             } else {
-                await axios.post("http://localhost:5001/api/favorites/add", {
+                await axios.post(`${API_BASE}/api/favorites/add`, {
                     user_id: user.id,
                     product_id: product.id,
                 });

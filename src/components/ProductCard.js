@@ -1,6 +1,7 @@
 import React from "react";
 import { FaHeart, FaShoppingCart } from "react-icons/fa"; 
 import "../styles/ProductCard.css";
+const API_BASE = "https://lysea-backend.onrender.com";
 
 const ProductCard = ({ product, addToCart, toggleFavorite, isLiked, navigate }) => {
     return (
@@ -12,8 +13,7 @@ const ProductCard = ({ product, addToCart, toggleFavorite, isLiked, navigate }) 
             />
 
             {/* 🖼️ Image Produit */}
-            <img src={`http://localhost:5001${product.image_url}`} alt={product.nom} className="product-img" />
-
+             <img src={`${API_BASE}${product.image_url}`} alt={product.nom} className="product-img" />
             {/* 📌 Infos Produit */}
             <div className="product-info">
                 <h3>{product.nom}</h3>

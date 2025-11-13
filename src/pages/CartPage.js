@@ -5,6 +5,7 @@ import { CartContext } from "../context/CartContext";
 import { UserContext } from "../context/UserContext";
 import { FaTrash } from "react-icons/fa";
 import "../styles/CartPage.css";
+const API_BASE = "https://lysea-backend.onrender.com";
 
 const CartPage = () => {
     const { cart, addToCart, removeFromCart, clearCart, decreaseQuantity, increaseQuantity } = useContext(CartContext);
@@ -57,7 +58,7 @@ const CartPage = () => {
             {cart.map((product) => (
                 <li key={product.product_id} className="cart-item">
                     {product.image_url && (
-                        <img src={`http://localhost:5001${product.image_url}`} alt={product.nom} />
+                        <img src={`${API_BASE}${product.image_url}`} alt={product.nom} />
                     )}
                     <div>
                         <h3>{product.nom}</h3>
