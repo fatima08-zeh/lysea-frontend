@@ -2,13 +2,13 @@ import React, { createContext, useState, useContext, useEffect } from "react";
 import axios from "axios";
 import { UserContext } from "./UserContext";
 
-export const CartContext = createContext(); // ✅ Export du contexte
+export const CartContext = createContext(); 
 
 export const CartProvider = ({ children }) => {
     const { user } = useContext(UserContext) || {};
     const [cart, setCart] = useState([]);
 
-    // ✅ Charger le panier depuis la base de données
+    
     useEffect(() => {
         if (user && user.id) {
             axios
@@ -21,7 +21,7 @@ export const CartProvider = ({ children }) => {
         }
     }, [user]);
 
-    // ✅ Ajouter un produit ou incrémenter s’il existe déjà
+    
     const addToCart = async (product) => {
         try {
             const exist = cart.find((item) => item.id === product.id);
@@ -47,7 +47,7 @@ export const CartProvider = ({ children }) => {
         }
     };
 
-    // ✅ Retirer un produit complètement
+   
     const removeFromCart = async (productId) => {
         try {
             await axios.delete(`http://localhost:5001/api/cart/remove/${user.id}/${productId}`);
@@ -57,7 +57,7 @@ export const CartProvider = ({ children }) => {
         }
     };
 
-    // ✅ Vider le panier
+    
     const clearCart = async () => {
         try {
             await axios.delete(`http://localhost:5001/api/cart/clear/${user.id}`);
@@ -67,7 +67,7 @@ export const CartProvider = ({ children }) => {
         }
     };
 
-    // ✅ Incrémenter
+   
     const increaseQuantity = async (productId) => {
         try {
             await axios.post("http://localhost:5001/api/cart/add", {
@@ -88,7 +88,7 @@ export const CartProvider = ({ children }) => {
         }
     };
 
-    // ✅ Décrémenter
+   
     const decreaseQuantity = async (productId) => {
         try {
             await axios.post("http://localhost:5001/api/cart/decrease", {
