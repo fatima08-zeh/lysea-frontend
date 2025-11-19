@@ -1,4 +1,3 @@
-// 📁 frontend/src/components/Chatbot.jsx
 import React, { useState } from 'react';
 import './Chatbot.css';
 
