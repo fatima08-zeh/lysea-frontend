@@ -31,7 +31,7 @@ const Navbar = ({ onSearch }) => {
   useEffect(() => {
     const handleClickOutside = (event) => {
       const target = event.target;
-      // Si le clic est en dehors de l'icône ET du menu déroulant, on ferme
+      
       if (
         menuRef.current &&
         !menuRef.current.contains(target) &&
