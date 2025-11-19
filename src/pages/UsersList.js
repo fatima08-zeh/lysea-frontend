@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../styles/UsersList.css";
-const API_BASE = "https://lysea-backend.onrender.com";
+
+const API_BASE = process.env.REACT_APP_API_BASE || "http://localhost:5001";
+
 const UsersList = () => {
     const [users, setUsers] = useState([]);
 
@@ -12,6 +14,7 @@ const UsersList = () => {
     const fetchAllUsers = async () => {
         try {
             const response = await axios.get(`${API_BASE}/api/users/all`);
+            setUsers(response.data);
         } catch (error) {
             console.error("❌ Erreur chargement des utilisateurs :", error);
         }

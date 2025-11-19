@@ -3,7 +3,9 @@ import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 import { UserContext } from "../context/UserContext";
 import { CartContext } from "../context/CartContext";
-const API_BASE = "https://lysea-backend.onrender.com";
+
+// ✔️ API dynamique
+const API_BASE = process.env.REACT_APP_API_BASE || "http://localhost:5001";
 
 const PaypalSuccess = () => {
   const navigate = useNavigate();
@@ -17,13 +19,16 @@ const PaypalSuccess = () => {
 
     const capturePayment = async () => {
       try {
-        const resp = await axios.post(`${API_BASE}/api/checkout/capture-payment`,
-          { orderID, userId: user?.id }
+        const resp = await axios.post(
+          `${API_BASE}/api/checkout/capture-payment`,
+          {
+            orderID,
+            userId: user?.id || null, // ✔️ évite erreurs si pas connecté
+          }
         );
 
         if (resp.status === 200) {
           clearCart();
-          alert("✅ Paiement confirmé !");
           navigate("/");
         } else {
           alert("❌ La capture du paiement a échoué.");

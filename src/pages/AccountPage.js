@@ -1,9 +1,10 @@
-// src/pages/AccountPage.jsx
 import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { UserContext } from "../context/UserContext";
 import { useNavigate } from "react-router-dom";
-const API_BASE = "https://lysea-backend.onrender.com";
+
+const API_BASE = process.env.REACT_APP_API_BASE || "http://localhost:5001";
+
 const AccountPage = () => {
   const { user, token, logout } = useContext(UserContext);
   const navigate = useNavigate();
@@ -14,50 +15,59 @@ const AccountPage = () => {
     adresse: "",
     telephone: ""
   });
+
   const [editing, setEditing] = useState(false);
   const [loading, setLoading] = useState(true);
 
-  // Récupère les infos au chargement
+  // Charger les infos utilisateur
   useEffect(() => {
-  if (!user) {
-    navigate("/login");
-    return;
-  }
-  axios
-    .get(`${API_BASE}/api/users/${user.id}`, {
-      headers: { Authorization: `Bearer ${token}` }
-    })
-    .then(res => {
-      setData({
-        nom:       res.data.nom,
-        email:     res.data.email,
-        adresse:   res.data.adresse   || "",
-        telephone: res.data.telephone || ""
-      });
-    })
-    .catch(err => {
-      console.error(err);
-      if (err.response?.status === 401) logout();
-    })
-    .finally(() => setLoading(false));
-}, [user, token, logout, navigate]);
+    if (!user) {
+      navigate("/login");
+      return;
+    }
 
+    axios
+      .get(`${API_BASE}/api/users/${user.id}`, {
+        headers: token ? { Authorization: `Bearer ${token}` } : {}
+      })
+      .then((res) => {
+        setData({
+          nom: res.data.nom,
+          email: res.data.email,
+          adresse: res.data.adresse || "",
+          telephone: res.data.telephone || ""
+        });
+      })
+      .catch((err) => {
+        console.error(err);
 
-  const handleChange = e => {
-    setData(prev => ({ ...prev, [e.target.name]: e.target.value }));
+        // Déconnexion en cas de token expiré
+        if (err.response?.status === 401) logout();
+      })
+      .finally(() => setLoading(false));
+  }, [user, token, logout, navigate]);
+
+  const handleChange = (e) => {
+    setData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
+  // Sauvegarder les infos modifiées
   const handleSave = () => {
     axios
       .put(
-        `http://localhost:5001/api/users/${user.id}`,
-        { adresse: data.adresse, telephone: data.telephone },
-        { headers: { Authorization: `Bearer ${token}` } }
+        `${API_BASE}/api/users/${user.id}`,
+        {
+          adresse: data.adresse,
+          telephone: data.telephone
+        },
+        {
+          headers: token ? { Authorization: `Bearer ${token}` } : {}
+        }
       )
       .then(() => {
         setEditing(false);
       })
-      .catch(err => console.error(err));
+      .catch((err) => console.error(err));
   };
 
   if (loading) return <p>Chargement…</p>;
@@ -73,7 +83,6 @@ const AccountPage = () => {
         <strong>Email :</strong> {data.email}
       </p>
 
-      {/* Bouton bascule édition */}
       {!editing ? (
         <button onClick={() => setEditing(true)}>Modifier mes infos</button>
       ) : (
@@ -90,6 +99,7 @@ const AccountPage = () => {
               />
             </label>
           </div>
+
           <div style={{ marginBottom: 12 }}>
             <label>
               Téléphone :
@@ -102,6 +112,7 @@ const AccountPage = () => {
               />
             </label>
           </div>
+
           <button onClick={handleSave} style={{ marginRight: 12 }}>
             Enregistrer
           </button>

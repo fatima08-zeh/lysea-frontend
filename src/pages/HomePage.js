@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "../styles/HomePage.css";
 import { useNavigate } from "react-router-dom";
 import NewsletterForm from "../components/NewsletterForm";
@@ -12,84 +12,91 @@ const HomePage = () => {
       <section className="hero">
         <div className="hero-left">
           <span className="badge">NOUVEAU · Fait au Québec</span>
+
           <h1>Lyséa</h1>
+
           <p className="subtitle">
             Révélez votre beauté naturelle avec les meilleurs soins cosmétiques conçus pour vous.
-            Femme de passion et visionnaire, Karine Joncas a créé une cosmétique unique, performante et innovante conçue et adaptée pour la femme active moderne.
-            La science de l’EFFICACITÉ, de la BEAUTÉ et du BIEN-ÊTRE sont les forces motrices derrière la philosophie de la marque.
-            Découvrez comment chacune d’entre elles se reflètent dans la gamme KARINE JONCAS.
-            EFFICACITÉ : Des formules chargées en ingrédients haute performance éprouvés en clinique.
-            BEAUTÉ : Une peau d’apparence plus jeune, mais également plus en santé.
-            BIEN-ÊTRE : Une expérience sensorielle unique de bien-être globale.
+            Femme de passion et visionnaire, Karine Joncas a créé une cosmétique unique, performante
+            et innovante conçue et adaptée pour la femme active moderne.
+            La science de l’EFFICACITÉ, de la BEAUTÉ et du BIEN-ÊTRE sont les forces motrices derrière
+            la philosophie de la marque.
           </p>
+
           <p className="secondary-text">
-            Des produits fabriqués au Québec avec des ingrédients de qualité, testés par des dermatologues, pour une peau saine, lumineuse et respectée.
-            Aux femmes qui veulent se sentir encore plus confiantes, fortes et belles, Watier est une pionnière dans l’industrie de la beauté, parce qu’elle crée des formules qui subliment votre beauté unique.
+            Des produits fabriqués au Québec avec des ingrédients de qualité, testés par des dermatologues.
+            Watier est une pionnière dans l’industrie de la beauté, sublimant la beauté unique de chaque femme.
           </p>
-          <button onClick={() => navigate("/beautypage")}>Voir les produits</button>
+
+          <button onClick={() => navigate("/beautypage")}>
+            Voir les produits
+          </button>
         </div>
 
         <div className="hero-right">
-          <img src="/images/home1.png" alt="produits lyséa" />
+          <img src="/images/home1.png" alt="Produits Lyséa" />
         </div>
       </section>
-      {/* Routine beauté microfluidique */}
+
+      {/* Routine beauté */}
       <section className="routine">
         <div className="routine-left">
           <h3>HYDRA BEAUTY</h3>
           <h2>LA ROUTINE BEAUTÉ MICROFLUIDIQUE</h2>
           <p>
-            Trois coffrets composés d'essentiels beauté et conçus pour les moments que vous vivez :
-            soirées audacieuses, soirées sereines et aventures lointaines.
+            Trois coffrets conçus pour vos moments : soirées audacieuses, soirées sereines et aventures lointaines.
           </p>
-           
-           <button onClick={() => navigate("/product/16")}>
-  DÉCOUVRIR
-</button>
-</div>
+
+          <button onClick={() => navigate("/product/16")}>
+            DÉCOUVRIR
+          </button>
+        </div>
+
         <div className="routine-right">
           <img src="/images/routine.png" alt="Routine Hydra Beauty" />
         </div>
       </section>
 
-{/* Deep Cleansing Oil – Lise Watier */}
-<section className="feature-oil">
-  <div className="feature-oil-image">
-    <img src="/images/oil.png" alt="Huile démaquillante Lise Watier" />
-  </div>
-  <div className="feature-oil-text">
-    <h3>LISE WATIER</h3>
-    <h2>HUILE DÉMAQUILLANTE HAUTE PERFORMANCE</h2>
-    <p>Formulée avec des extraits d’avocat et de noix de coco…</p>
-    {/* ← bouton bien lié à /product/42 */}
-    <button
-      className="btn-link"
-      onClick={() => navigate("/product/17")}
-    >
-      DÉCOUVRIR
-    </button>
-  </div>
-</section>
+      {/* Huile démaquillante */}
+      <section className="feature-oil">
+        <div className="feature-oil-image">
+          <img src="/images/oil.png" alt="Huile démaquillante Lise Watier" />
+        </div>
 
+        <div className="feature-oil-text">
+          <h3>LISE WATIER</h3>
+          <h2>HUILE DÉMAQUILLANTE HAUTE PERFORMANCE</h2>
+          <p>Formulée avec des extraits d’avocat et de noix de coco…</p>
 
+          <button
+            className="btn-link"
+            onClick={() => navigate("/product/17")}
+          >
+            DÉCOUVRIR
+          </button>
+        </div>
+      </section>
 
       {/* Pourquoi Lyséa */}
       <section className="why-dangila">
         <h2>Pourquoi Lyséa ?</h2>
         <p className="why-subtext">
-          Des soins testés, sans effets secondaires, et entièrement naturels, conçus pour votre bien-être global.
+          Des soins naturels, efficaces, cliniquement testés et conçus pour votre bien-être global.
         </p>
+
         <div className="why-cards">
           <div className="why-item">
             <img src="/images/natural.png" alt="Naturel" />
             <h3>Naturel</h3>
             <p>Ingrédients locaux et doux pour tous les types de peau.</p>
           </div>
+
           <div className="why-item">
             <img src="/images/safety.png" alt="Sans effets secondaires" />
             <h3>Sans effet secondaire</h3>
             <p>Testés par des experts, approuvés en clinique.</p>
           </div>
+
           <div className="why-item">
             <img src="/images/organic.png" alt="100% organique" />
             <h3>100% Organique</h3>
@@ -99,20 +106,26 @@ const HomePage = () => {
       </section>
 
       {/* À propos */}
-      <section className="about-lyséa">
+      <section className="about-lysea">
         <div className="about-left">
           <h2>À propos de Lyséa</h2>
           <p>
             Lyséa sélectionne les meilleurs soins cosmétiques du Québec.
             Conçus avec des ingrédients naturels et testés en clinique,
             nos produits offrent beauté, efficacité et bien-être.
-            Une peau nourrie, radieuse et respectée, dans une expérience sensorielle unique.
           </p>
+
           <div className="about-buttons">
-            <button className="btn-buy" onClick={() => navigate("/beautypage")}>Acheter</button>
-            <button className="btn-secondary" onClick={() => navigate("/register")}>S'inscrire</button>
+            <button className="btn-buy" onClick={() => navigate("/beautypage")}>
+              Acheter
+            </button>
+
+            <button className="btn-secondary" onClick={() => navigate("/register")}>
+              S'inscrire
+            </button>
           </div>
         </div>
+
         <div className="about-right">
           <img src="/images/home9.png" alt="Produit Lyséa" />
         </div>
@@ -129,11 +142,16 @@ const HomePage = () => {
       {/* Footer */}
       <footer className="footer">
         <div className="footer-col">
-          <p>Apprenez à aimer l’évolution et le changement<br />et vous réussirez.</p>
           <p>
-            💼 Vous cherchez un emploi ? Écrivez-nous à 
+            Apprenez à aimer l’évolution et le changement<br />
+            et vous réussirez.
+          </p>
+
+          <p>
+            💼 Vous cherchez un emploi ? Écrivez-nous à&nbsp;
             <a href="mailto:lysea.jobs@gmail.com">lysea.jobs@gmail.com</a>
           </p>
+
           <div className="footer-icons">
             <i className="fab fa-twitter"></i>
             <i className="fab fa-facebook-f"></i>
@@ -142,15 +160,13 @@ const HomePage = () => {
           </div>
         </div>
 
-        
-
         <div className="footer-col">
           <p>📍 123 rue Lyséa, Montréal, QC</p>
           <p>📞 +1 514 123 4567</p>
           <a href="mailto:hello@lysea.ca">✉ hello@lysea.ca</a>
-          
         </div>
-<div className="footer-col footer-newsletter">
+
+        <div className="footer-col footer-newsletter">
           <p>Recevez nos offres spéciales et nouveautés :</p>
           <NewsletterForm />
         </div>

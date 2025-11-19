@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import "../styles/EditProductPag.css";
-const API_BASE = "https://lysea-backend.onrender.com";
+
+const API_BASE = process.env.REACT_APP_API_BASE || "http://localhost:5001";
 
 const brands = ["Karine Joncas", "Watier", "Reversa"];
 
@@ -10,21 +11,20 @@ const EditProductPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
 
-  // État du formulaire
   const [formData, setFormData] = useState({
     nom: "",
     prix: "",
     description: "",
     image: null,
-    brand: "Autre",
+    brand: "",
   });
 
   const [previewImage, setPreviewImage] = useState(null);
 
-  // ✅ Charger les infos du produit existant
+  // 📌 Charger le produit existant
   useEffect(() => {
     axios
-      axios.get(`${API_BASE}/api/products/${id}`)
+      .get(`${API_BASE}/api/products/${id}`)
       .then((response) => {
         const product = response.data;
         setFormData({
@@ -34,14 +34,18 @@ const EditProductPage = () => {
           brand: product.brand || "",
           image: null,
         });
-        setPreviewImage(`${API_BASE}${product.image_url}`);
+
+        if (product.image_url) {
+          setPreviewImage(`${API_BASE}${product.image_url}`);
+        }
       })
-      .catch((error) =>
-        console.error("❌ Erreur chargement du produit :", error)
-      );
+      .catch((error) => {
+        console.error("❌ Erreur chargement produit :", error);
+        alert("Erreur lors du chargement du produit");
+      });
   }, [id]);
 
-  // ✅ Gérer les changements dans les champs
+  // 📌 Gérer les champs du formulaire
   const handleChange = (e) => {
     if (e.target.name === "image") {
       const file = e.target.files[0];
@@ -52,34 +56,32 @@ const EditProductPage = () => {
     }
   };
 
-  // ✅ Supprimer le produit
+  // 🗑️ Supprimer produit
   const deleteProduct = async () => {
-    if (!window.confirm("Êtes-vous sûr de vouloir supprimer ce produit ?")) {
-      return;
-    }
+    if (!window.confirm("Êtes-vous sûr de vouloir supprimer ce produit ?")) return;
 
     try {
-        const response = await axios.delete(`${API_BASE}/api/products/${id}`);
+      const response = await axios.delete(`${API_BASE}/api/products/${id}`);
 
       if (response.status === 200) {
-        alert("✅ Produit supprimé !");
         navigate("/admin/products");
-      } else {
-        alert(`❌ Erreur : ${response.data.message}`);
       }
     } catch (error) {
-      console.error("❌ Erreur lors de la suppression :", error);
-      alert("❌ Erreur lors de la suppression du produit !");
+      console.error("❌ Erreur suppression :", error);
+      alert("Erreur lors de la suppression !");
     }
   };
 
+  // 💾 Mise à jour du produit
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     const data = new FormData();
     data.append("nom", formData.nom);
     data.append("prix", formData.prix);
     data.append("description", formData.description);
     data.append("brand", formData.brand);
+
     if (formData.image) {
       data.append("image", formData.image);
     }
@@ -88,25 +90,28 @@ const EditProductPage = () => {
       await axios.put(`${API_BASE}/api/products/${id}`, data, {
         headers: { "Content-Type": "multipart/form-data" },
       });
-
-
-      alert("✅ Produit mis à jour avec succès !");
       navigate("/admin/products");
     } catch (error) {
-      console.error("❌ Erreur mise à jour du produit :", error);
-      alert("❌ Erreur lors de la mise à jour !");
+      console.error("❌ Erreur mise à jour :", error);
+      alert("Erreur lors de la mise à jour !");
     }
   };
 
   return (
     <div className="edit-product-page">
       <div className="product-form-container">
+        
+        {/* Image preview */}
         <div className="product-left">
-          {previewImage && <img src={previewImage} alt="Produit actuel" />}
+          {previewImage && <img src={previewImage} alt="Produit" />}
         </div>
+
+        {/* Formulaire */}
         <div className="product-right">
           <h2>Modifier le Produit</h2>
+
           <form onSubmit={handleSubmit} encType="multipart/form-data">
+
             <input
               type="text"
               name="nom"
@@ -115,44 +120,39 @@ const EditProductPage = () => {
               placeholder="Nom du produit"
               required
             />
+
             <input
-              type="text"
+              type="number"
               name="prix"
               value={formData.prix}
               onChange={handleChange}
               placeholder="Prix"
               required
             />
+
             <textarea
               name="description"
               value={formData.description}
               onChange={handleChange}
-              placeholder="Description du produit"
+              placeholder="Description"
               rows="4"
               required
             />
-            {/* ✅ Sélection de la marque */}
-            <select
-              name="brand"
-              value={formData.brand}
-              onChange={handleChange}
-              required
-            >
+
+            <select name="brand" value={formData.brand} onChange={handleChange} required>
               <option value="">Sélectionner une marque</option>
-              {brands.map((brand) => (
-                <option key={brand} value={brand}>
-                  {brand}
+              {brands.map((b) => (
+                <option key={b} value={b}>
+                  {b}
                 </option>
               ))}
             </select>
-            <input
-              type="file"
-              name="image"
-              accept="image/*"
-              onChange={handleChange}
-            />
+
+            <input type="file" name="image" accept="image/*" onChange={handleChange} />
+
             <button type="submit">Mettre à jour</button>
           </form>
+
           <button className="delete-btn" onClick={deleteProduct}>
             🗑️ Supprimer le produit
           </button>

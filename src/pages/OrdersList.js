@@ -1,12 +1,16 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "../styles/OrdersList.css";
-const API_BASE = "https://lysea-backend.onrender.com";
+
+// ✔️ API dynamique (local + production)
+const API_BASE = process.env.REACT_APP_API_BASE || "http://localhost:5001";
+
 const OrdersList = () => {
     const [orders, setOrders] = useState([]);
 
     useEffect(() => {
-        axios.get(`${API_BASE}/api/orders`) // ✅ API des commandes
+        axios
+            .get(`${API_BASE}/api/orders`)
             .then(response => setOrders(response.data))
             .catch(error => console.error("❌ Erreur chargement des commandes :", error));
     }, []);
@@ -35,11 +39,13 @@ const OrdersList = () => {
                                 <td>{order.id}</td>
                                 <td>{order.client}</td>
                                 <td>
-                                    {order.products.map((prod, index) => (
-                                        <div key={index}>{prod.nom} x{prod.quantite}</div>
+                                    {order.products?.map((prod, index) => (
+                                        <div key={index}>
+                                            {prod.nom} x{prod.quantite}
+                                        </div>
                                     ))}
                                 </td>
-                                <td>{order.total} DH</td>
+                                <td>{order.total} CAD</td>
                                 <td>{order.status}</td>
                             </tr>
                         ))

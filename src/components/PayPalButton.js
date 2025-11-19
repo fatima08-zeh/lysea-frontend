@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-const API_BASE = "https://lysea-backend.onrender.com";
 
 const PayPalButton = ({ amount }) => {
   const [loading, setLoading] = useState(false);
@@ -8,7 +7,7 @@ const PayPalButton = ({ amount }) => {
     setLoading(true);
     try {
       const response = await fetch(
-        `${API_BASE}/api/checkout/create-payment`,
+        "http://localhost:5001/api/checkout/create-payment",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },

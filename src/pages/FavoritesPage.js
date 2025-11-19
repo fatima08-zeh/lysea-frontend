@@ -10,13 +10,15 @@ const FavoritesPage = () => {
   const { addToCart } = useContext(CartContext);
   const navigate = useNavigate();
 
-  // 🔄 Charger les favoris stockés dans `localStorage` au chargement
+  // 🔄 Charger favoris depuis localStorage UNE seule fois
   useEffect(() => {
-    const storedFavorites = JSON.parse(localStorage.getItem("favorites")) || [];
-    setFavorites(storedFavorites);
+    const stored = localStorage.getItem("favorites");
+    if (stored) {
+      setFavorites(JSON.parse(stored));
+    }
   }, [setFavorites]);
 
-  // ✅ Mettre à jour `localStorage` chaque fois que les favoris changent
+  // 🔄 Sauvegarde automatique quand les favoris changent
   useEffect(() => {
     localStorage.setItem("favorites", JSON.stringify(favorites));
   }, [favorites]);
@@ -24,34 +26,18 @@ const FavoritesPage = () => {
   return (
     <div className="beauty-page">
       <h2 className="section-title">Mes Favoris ❤️</h2>
-      {favorites.length > 0 && (
-      <button 
-        onClick={() => setFavorites([])} 
-        style={{ 
-          marginBottom: 16, 
-          backgroundColor: "#ff4d4d", 
-          color: "white", 
-          border: "none", 
-          padding: "8px 16px", 
-          borderRadius: "6px", 
-          cursor: "pointer"
-        }}
-      >
-        🗑️ Vider mes favoris
-      </button>
-    )}
+
       {favorites.length > 0 ? (
         <div className="product-grid">
           {favorites.map((product) => (
-            <div key={product.id} className="favorite-item">
-              <ProductCard
-                product={product}
-                toggleFavorite={() => toggleFavorite(product)}
-                addToCart={() => addToCart(product)}
-                isLiked={favorites.some((fav) => fav.id === product.id)}
-                navigate={() => navigate(`/product/${product.id}`)}
-              />
-            </div>
+            <ProductCard
+              key={product.id}
+              product={product}
+              toggleFavorite={() => toggleFavorite(product)}
+              addToCart={() => addToCart(product)}
+              isLiked={true} // ✔️ inutile de recalculer, c’est une page de favoris
+              navigate={() => navigate(`/product/${product.id}`)}
+            />
           ))}
         </div>
       ) : (

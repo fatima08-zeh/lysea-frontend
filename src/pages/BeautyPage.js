@@ -5,13 +5,13 @@ import "../styles/BeautyPage.css";
 import { useNavigate, useLocation } from "react-router-dom";
 import { FavoritesContext } from "../context/FavoritesContext";
 import { CartContext } from "../context/CartContext";
-const API_BASE = "https://lysea-backend.onrender.com";
+
+const API_BASE = process.env.REACT_APP_API_BASE || "http://localhost:5001";
 
 const BeautyPage = ({ searchTerm }) => {
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
     const navigate = useNavigate();
-    const location = useLocation();
     const showFilters = true;
 
     const [selectedBrand, setSelectedBrand] = useState("");
@@ -20,9 +20,10 @@ const BeautyPage = ({ searchTerm }) => {
     const { favorites, toggleFavorite } = useContext(FavoritesContext);
     const { addToCart } = useContext(CartContext);
 
+    // 🔥 API FIXÉE — Bonne URL
     useEffect(() => {
         axios
-            .get(axios.get(`${API_BASE}/api/products`))
+            .get(`${API_BASE}/api/products`)
             .then((response) => {
                 setProducts(response.data);
                 setLoading(false);
@@ -33,17 +34,19 @@ const BeautyPage = ({ searchTerm }) => {
             });
     }, []);
 
+    // 🔍 Normalisation recherche
     const normalizedSearchTerm = searchTerm ? searchTerm.toLowerCase() : "";
 
+    // 🎯 Filtrage produits
     const filteredProducts = products
         .filter((product) =>
-            product.nom && product.nom.toLowerCase().includes(normalizedSearchTerm)
+            product.nom?.toLowerCase().includes(normalizedSearchTerm)
         )
         .filter((product) =>
-            selectedBrand ? product.brand?.toLowerCase().trim() === selectedBrand.toLowerCase().trim() : true
+            selectedBrand ? product.brand?.toLowerCase() === selectedBrand.toLowerCase() : true
         )
         .filter((product) =>
-            maxPrice ? product.prix <= parseFloat(maxPrice) : true
+            maxPrice ? Number(product.prix) <= Number(maxPrice) : true
         );
 
     return (
@@ -51,12 +54,16 @@ const BeautyPage = ({ searchTerm }) => {
             <h2 className="section-title"></h2>
 
             <div className="page-content">
+                {/* 🔵 Filtres */}
                 {showFilters && (
                     <div className="filters-sidebar">
                         <h3>Filtres</h3>
 
                         <label>Marque</label>
-                        <select value={selectedBrand} onChange={(e) => setSelectedBrand(e.target.value)}>
+                        <select
+                            value={selectedBrand}
+                            onChange={(e) => setSelectedBrand(e.target.value)}
+                        >
                             <option value="">Marques</option>
                             <option value="Karine Joncas">Karine Joncas</option>
                             <option value="Watier">Watier</option>
@@ -71,13 +78,18 @@ const BeautyPage = ({ searchTerm }) => {
                             onChange={(e) => setMaxPrice(e.target.value)}
                         />
 
-                        <button onClick={() => {
-                            setSelectedBrand("");
-                            setMaxPrice("");
-                        }}>Réinitialiser</button>
+                        <button
+                            onClick={() => {
+                                setSelectedBrand("");
+                                setMaxPrice("");
+                            }}
+                        >
+                            Réinitialiser
+                        </button>
                     </div>
                 )}
 
+                {/* Produits */}
                 {loading ? (
                     <p>Chargement des produits...</p>
                 ) : filteredProducts.length > 0 ? (
