@@ -2,8 +2,7 @@ import React, { createContext, useState, useContext, useEffect } from "react";
 import axios from "axios";
 import { UserContext } from "./UserContext";
 
-export const FavoritesContext = createContext(); // ✅ Export correct du contexte
-
+export const FavoritesContext = createContext(); 
 export const FavoritesProvider = ({ children }) => {
     const { user } = useContext(UserContext) || {};
     const [favorites, setFavorites] = useState([]);
@@ -20,7 +19,7 @@ export const FavoritesProvider = ({ children }) => {
         }
     }, [user]);
 
-    // ✅ Ajouter un produit aux favoris ou le retirer
+    
     const toggleFavorite = async (product) => {
         const isFavorite = favorites.some((fav) => fav.id === product.id);
     
@@ -42,7 +41,7 @@ export const FavoritesProvider = ({ children }) => {
         }
     };
 
-    // ✅ Fonction pour vider tous les favoris
+
     const clearFavorites = () => {
         setFavorites([]);
         localStorage.removeItem("favorites");
