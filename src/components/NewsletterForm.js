@@ -3,7 +3,7 @@ import React, { useState } from "react";
 export default function NewsletterForm() {
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
-  const [msg, setMsg] = useState(null); // { type: 'success' | 'error', text: string }
+  const [msg, setMsg] = useState(null); 
 
   const handleNewsletterSubmit = async (e) => {
     e.preventDefault();
@@ -13,8 +13,7 @@ export default function NewsletterForm() {
     setMsg(null);
 
     try {
-      // 👉 Remplace l'URL par ton endpoint réel côté serveur
-      // change juste cette ligne:
+      
 const res = await fetch("http://localhost:5001/api/newsletter/subscribe", {
   method: "POST",
   headers: { "Content-Type": "application/json" },
