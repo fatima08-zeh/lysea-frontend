@@ -25,7 +25,7 @@ const PayPalButton = ({ amount }) => {
 
       const data = await response.json();
       if (data.approvalUrl) {
-        window.location.href = data.approvalUrl; // redirection vers PayPal
+        window.location.href = data.approvalUrl; 
       } else {
         alert("Lien d’approbation PayPal introuvable.");
       }

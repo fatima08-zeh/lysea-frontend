@@ -5,13 +5,13 @@ import "../styles/ProductCard.css";
 const ProductCard = ({ product, addToCart, toggleFavorite, isLiked, navigate }) => {
     return (
         <div className="product-card">
-            {/* ❤️ Icône Favoris en haut à droite */}
+            
             <FaHeart 
                 className={`like-icon ${isLiked ? "liked" : ""}`} 
                 onClick={() => toggleFavorite(product)} 
             />
 
-            {/* 🖼️ Image Produit */}
+            
             <img src={`http://localhost:5001${product.image_url}`} alt={product.nom} className="product-img" />
 
             {/* 📌 Infos Produit */}
